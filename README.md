@@ -9,3 +9,7 @@ Repozitář pro webovou aplikaci VetCal. Tato aplikace slouží jako objednávko
 ## Backend
 
 @ Smolik, Tomas
+
+## API
+
+@ Huslarova, Anna

@@ -1,0 +1,25 @@
+{
+  "name": "vetcal",
+  "version": "1.0.0",
+  "description": "Zápočtový projekt na předmět Implementace zdravotnických systémů.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon -r dotenv/config src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Huslarova Anna",
+  "license": "ISC",
+  "dependencies": {
+    "connect-session-sequelize": "^7.1.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}

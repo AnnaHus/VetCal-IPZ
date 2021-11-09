@@ -1,0 +1,27 @@
+CREATE TABLE client
+(
+ "id"          SERIAL,
+ firstname   varchar(50) NOT NULL,
+ lastname    varchar(50) NOT NULL,
+ "date"        DATE NOT NULL,
+ "time"        TIME NOT NULL,
+ description varchar(250) NOT NULL,
+ fk_user     int NOT NULL,
+ CONSTRAINT PK_14 PRIMARY KEY ( "id" ),
+ CONSTRAINT FK_26 FOREIGN KEY ( fk_user ) REFERENCES "user" ( "id" )
+);
+
+CREATE INDEX fkIdx_28 ON client
+(
+ fk_user
+);
+
+CREATE TABLE "user"
+(
+ "id"        SERIAL,
+ username  varchar(50) NOT NULL,
+ password  varchar(50) NOT NULL,
+ firstname varchar(50) NOT NULL,
+ lastname  varchar(50) NOT NULL,
+ CONSTRAINT PK_7 PRIMARY KEY ( "id" )
+);

@@ -13,3 +13,4 @@ Repozitář pro webovou aplikaci VetCal. Tato aplikace slouží jako objednávko
 ## API
 
 @ Huslarova, Anna
+Zkouška

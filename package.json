@@ -11,7 +11,8 @@
   "author": "Huslarova Anna",
   "license": "ISC",
   "engines" : { 
-    "node" : "^7.19.1" 
+    "npm" : "^7.19.1",
+    "node" : "^16.4.2" 
   },
   "dependencies": {
     "connect-session-sequelize": "^7.1.1",

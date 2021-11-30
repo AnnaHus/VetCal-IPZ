@@ -5,7 +5,7 @@ const session = require('express-session')
 const app = express()
 const port = process.env.PORT
 const db = require('./models')
-const UserController = require('./controllers/userController')
+// const UserController = require('./controllers/userController')
 const AppController = require('./controllers/appController')
 
 // Load middleware for parsing request and response body
@@ -20,6 +20,21 @@ const logHttp = (req, res, next) => {
   next()
 }
 app.use(logHttp)
+
+// Add static files
+app.use(express.static(path.join(__dirname, '..', 'public')))
+
+// Routes
+app.get('/', (req, res) => {
+  // TODO login
+  /* if (!req.session.username) {
+    res.redirect('/login')
+  } else {
+    res.redirect('/apps')
+  } */
+
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+})
 
 app.get('/app', async (req, res) => {
 const apps = await AppController.findApps()

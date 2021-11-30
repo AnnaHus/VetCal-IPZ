@@ -1,4 +1,4 @@
-const App = require('../models/app')
+const App = require('../models/apponint')
 
 const createApp = async (name, petName, petSpec, time ) => {
     await App.create({ name: name, petName: petName, petSpec:petSpec, time:time })

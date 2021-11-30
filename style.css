@@ -1,0 +1,321 @@
+ul {list-style-type: none;}
+body {font-family: 'Montserrat';}
+
+.calendar-container {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: baseline;
+  display: grid;
+  grid-template-columns: 250px auto auto 250px;
+  grid-template-rows: 75px;
+  grid-template-areas: 
+    "side day day autorisation";
+    box-sizing: border-box;
+    border-bottom-width: 1px;
+    border-bottom-color: #D1D1D1;
+    border-bottom-style: solid;
+
+}
+
+.side {
+  grid-area: side;
+  background: #cb997e;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.day {
+  padding: 0px 0px;
+  width: 100%;
+  background: #cb997e;
+  text-align: center;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  
+}
+
+.day ul {
+  padding: 0;
+}
+
+.day ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.day .prev {
+
+  float: left;
+  padding-top: 10px;
+  padding-left: 30%;
+  cursor: pointer;
+}
+
+.day .next {
+  float: right;
+  padding-top: 10px;
+  padding-right: 30%;
+  cursor: pointer;
+}
+
+.autorisation {
+  grid-area: autorisation;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  background: #cb997e;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  "avatar user";
+}
+
+.autorisation .avatar-autorised {
+  grid-area: avatar;
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.autorisation .user {
+  grid-area: user;
+  font-size: 15px;
+  color: white;
+  float: right;
+  margin-right: 50px;
+  margin-top: 5px;
+}
+
+.autorisation .logout {
+  grid-area: user;
+  font-size: 12px;
+  color: white;
+  float: right;
+  margin-right: 97px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+
+
+/*.command-line {
+  display: grid;
+  grid-area: command-line;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  background: #ddbea9;
+  height: 50px;
+}
+
+.avatar {
+  vertical-align: middle;
+  margin: -16px 0 0 0;
+  margin-left: 65px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: no-repeat;
+}
+*/
+
+.event-container {
+  display: grid;
+  grid-template-columns: 110px 60px auto 150px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "timestamp-container doctor events events";
+  background: white;
+
+}
+
+
+.timestamp-container {
+    grid-area: timestamp-container;
+    grid-column-start: 1;
+    grid-column-end: auto;
+    justify-content: space-between;
+
+}
+
+.timestamp {
+
+    text-align: right;
+    padding-right: 10px;  
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    font-size: 0.5em;
+    box-sizing: border-box;
+    
+}
+
+.timestamp span {
+  font-size: 200%;
+  color: #696969;
+}
+
+
+/*.timestamp li::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 100%;
+  height: 1px;
+  background: lightsteelblue;
+
+}
+*/
+
+.events {
+  display: grid;
+  grid-column: 3;
+  grid-area: events;
+  padding: 0px 10px;
+  background-color: #F0F0F0;
+  border-color: #D1D1D1;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  border-top-width: 0;
+}
+
+.doctors {
+  display: grid;
+  grid-area: doctor;
+  padding: 0px 10px;
+  border-width: 0px ;
+  border-left-width: 1px;
+  background-color: white;
+  border-left-color: #D1D1D1;
+  border-style: solid;
+  box-sizing: border-box;
+
+}
+
+.event {
+  background: #dfdfdf;
+  border-style: solid;
+  border-width: 1px;
+  border-left-width: 5px;
+  border-color: #D1D1D1;
+  border-left-color: #cb997e;
+  padding-left: 10px;
+  padding-top: 5px;
+  position: absolute;
+  font-size: 150%;
+  box-sizing: border-box;
+}
+
+.add {
+  position: fixed;
+  grid-area: events;
+  background: #cb997e;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: white;
+  font-size: 35px;
+  border-width: 1px;
+  border-color: #D1D1D1;
+  border-style: solid;
+  cursor: pointer;
+  right: 0;
+  bottom: 0;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%; 
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add-event-container {
+  vertical-align: baseline;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+  "label-name label-time"
+  "name time";
+}
+
+label,
+input {
+    font-size: .8rem;
+    letter-spacing: 1px;
+    font-family: "Montserrat";
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+.client {
+    grid-area: name;
+    padding: 10px;
+    width: 90%;
+    height: 35px;
+    line-height: 1;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 15px;
+    /*box-shadow: 1px 1px 1px #999;*/
+}
+
+.time {
+  width: 30%;
+  grid-area: time;
+  display: block;
+  height: 35px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  background: #dfdfdf;
+  outline: none;
+}
+
+.client label input {
+  grid-area: label-name;
+}
+
+.time label input {
+  grid-area: label-time;
+}

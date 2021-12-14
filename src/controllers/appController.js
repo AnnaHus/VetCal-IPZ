@@ -1,4 +1,4 @@
-const App = require('../models/apponint')
+const App = require('../models/appointment')
 
 const createApp = async (clientName, time, date, duration, optionalDesc ) => {
     await App.create({ clientName: clientName, time: time, date:date, duration: duration, optionalDesc:optionalDesc })

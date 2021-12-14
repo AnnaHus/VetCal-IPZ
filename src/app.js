@@ -84,6 +84,7 @@ app.post('/apps', async (req, res) => {
 
 // Add static files
 app.use(express.static(path.join(__dirname, '..', 'public')))
+app.use(express.static(path.join(__dirname, '..', 'node_modules')))
 
 // Function for starting database and server
 const startServer = async () => {

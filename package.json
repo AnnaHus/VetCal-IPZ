@@ -10,14 +10,15 @@
   },
   "author": "Huslarova Anna",
   "license": "ISC",
-  "engines" : { 
-    "npm" : "^7.19.1",
-    "node" : "^16.4.2" 
+  "engines": {
+    "npm": "^7.19.1",
+    "node": "^16.4.2"
   },
   "dependencies": {
     "connect-session-sequelize": "^7.1.1",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "fullcalendar": "^5.10.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"

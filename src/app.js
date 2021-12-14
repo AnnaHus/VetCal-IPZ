@@ -5,7 +5,7 @@ const session = require('express-session')
 const app = express()
 const port = process.env.PORT
 const db = require('./models')
-// const UserController = require('./controllers/userController')
+const UserController = require('./controllers/userController')
 const AppController = require('./controllers/appController')
 
 // Load middleware for parsing request and response body
@@ -21,30 +21,69 @@ const logHttp = (req, res, next) => {
 }
 app.use(logHttp)
 
-// Add static files
-app.use(express.static(path.join(__dirname, '..', 'public')))
+// Add session middleware
+var SequelizeStore = require("connect-session-sequelize")(session.Store);
+var sessionStore = new SequelizeStore({ db: db })
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore
+}))
+
 
 // Routes
 app.get('/', (req, res) => {
-  // TODO login
-  /* if (!req.session.username) {
-    res.redirect('/login')
+  if (!req.session.username) {
+    res.sendStatus(401)
   } else {
-    res.redirect('/apps')
-  } */
-
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+  }  
 })
 
-app.get('/app', async (req, res) => {
-const apps = await AppController.findApps()
-res.status(200).send(apps)
+app.post('/register', async (req, res) => {
+  console.log(req.body)
+  const user = await UserController.findUser(req.body.username)
+  console.log(user)
+  if (!user) {
+    UserController.createUser(req.body.username, req.body.password)
+    res.status(200).send('OK')
+
+  } else {
+    res.status(200).send('User exists.')
+  }
 })
 
-app.post('/app', async (req, res) => {
-  await AppController.createApp(req.body.ownerName, req.body.petName, req.body.petSpec, req.body.date)
+app.post('/login', async (req, res) => {
+  const user = await UserController.findUser(req.body.username)
+  if ((!user) || req.body.password != user.password) {
+    res.sendStatus(401)
+  } else {
+    req.session.username = req.body.username
+    res.redirect('/')
+  }
+
+})
+
+app.get('/apps', async (req, res) => {
+  const datum = req.query.date
+  let apps
+  if(datum){
+    apps = await AppController.findApps(datum)
+  } else {
+    apps = await AppController.findAllApps()
+  }
+
+  res.status(200).send(apps)
+})
+
+app.post('/apps', async (req, res) => {
+  await AppController.createApp(req.body.clientName, req.body.time, req.body.date, req.body.duration, req.body.optionalDesc)
   res.send("OK")
 })
+
+// Add static files
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
 // Function for starting database and server
 const startServer = async () => {

@@ -4,7 +4,8 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 const appointment = sequelize.define("apponint", {
     clientName: DataTypes.TEXT,
     time: DataTypes.TIME,
-    date: DataTypes.DATE,
+    date: DataTypes.DATEONLY,
+    duration: DataTypes.INTEGER,
     optionalDesc: DataTypes.TEXT
 })
 

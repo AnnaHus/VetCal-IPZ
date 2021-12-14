@@ -1,11 +1,20 @@
 const App = require('../models/apponint')
 
-const createApp = async (name, petName, petSpec, time ) => {
-    await App.create({ name: name, petName: petName, petSpec:petSpec, time:time })
+const createApp = async (clientName, time, date, duration, optionalDesc ) => {
+    await App.create({ clientName: clientName, time: time, date:date, duration: duration, optionalDesc:optionalDesc })
 }
 
-const findApps = async () => {
+const findAllApps = async () => {
     return await App.findAll()
 }
 
-module.exports = { createApp, findApps }
+const findApps = async (date) => {
+    console.log(date)
+    return await App.findAll({
+        where: {
+            date: date
+        }
+    })
+}
+
+module.exports = { createApp, findAllApps, findApps }

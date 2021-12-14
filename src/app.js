@@ -22,23 +22,25 @@ const logHttp = (req, res, next) => {
 app.use(logHttp)
 
 // Add session middleware
-var SequelizeStore = require("connect-session-sequelize")(session.Store);
+/* var SequelizeStore = require("connect-session-sequelize")(session.Store);
 var sessionStore = new SequelizeStore({ db: db })
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: sessionStore
-}))
+}))*/
 
 
 // Routes
 app.get('/', (req, res) => {
-  if (!req.session.username) {
+  /*if (!req.session.username) {
     res.sendStatus(401)
   } else {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
-  }  
+  }  */
+
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
 app.post('/register', async (req, res) => {
@@ -89,9 +91,9 @@ app.use(express.static(path.join(__dirname, '..', 'node_modules')))
 // Function for starting database and server
 const startServer = async () => {
   try {
-    await db.sync()
-    await db.authenticate()
-    console.log('Succesfully connected to database.')
+    // await db.sync()
+    // await db.authenticate()
+    // console.log('Succesfully connected to database.')
     app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`)
     })

@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(info.end){
           e = new Date(info.end);
           s = new Date(info.start);
+          console.log(s);
           d = Math.abs(e-s)/ 60000;
         }
         openNewApp(s, d);

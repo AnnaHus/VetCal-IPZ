@@ -112,7 +112,7 @@ app.use(express.static(path.join(__dirname, '..', 'node_modules')))
 // Function for starting database and server
 const startServer = async () => {
   try {
-    await db.sync({force: true})
+    await db.sync()
     await db.authenticate()
     console.log('Succesfully connected to database.')
     app.listen(port, () => {

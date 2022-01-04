@@ -86,9 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
     scrollTime: '08:00:00',
     allDayText: "Služba",
     eventContent: function(arg) {
-      return {
-        html: arg.event.title + '<br>' + arg.event.extendedProps.note
-      }
+      if(arg.event.allDay) return arg.event.title;
+      else return arg.event.title + ': ' + arg.event.extendedProps.note
     },
   });
   calendar.render();
@@ -148,6 +147,7 @@ const saveNewApp = (event) => {
   newAppForm.reset();
   $('#newAppModal').modal('hide');
   calendar.refetchEvents();
+  console.log("Before render");
   calendar.render();
 }
 
@@ -157,6 +157,9 @@ const createNewShift = () => {
   .then(data => {
     console.log(data);
     var select = document.querySelector("#doctorSelect");
+    while (select.firstChild) {
+      select.removeChild(select.lastChild);
+    }
     for (let val of data) {
       var option = document.createElement("option");
       option.value = val.username;
@@ -192,6 +195,7 @@ const newShift = (event) => {
   shiftForm.reset();
   $('#shiftModal').modal('hide');
   calendar.refetchEvents();
+  console.log("Before rener");
   calendar.render();
 }
 

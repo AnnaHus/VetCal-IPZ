@@ -74,8 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     eventDataTransform: function( eventData ) {
       var ro = new Object();
       let d = new Date(eventData.dateTime);
-      s = d.toUTCString();
-      ro.start = s;
+      ro.start = eventData.dateTime;
       d.setMinutes(d.getMinutes() + eventData.duration);
       ro.end = d.toISOString();
       ro.allDay = eventData.allDay;
